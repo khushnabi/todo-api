@@ -5,30 +5,18 @@ use Illuminate\Support\Facades\Route;
 use App\Post;
 use App\Project;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get("/", "Api\HomeController@index");
+Route::resource("projects", "Api\ProjectController");
+Route::resource("projects.tasks", "Api\TaskController");
+// Route::get("/projects", "Api\ProjectController@index");
+// Route::post("/projects", "Api\ProjectController@store");
+// Route::get("/projects/{project}", "Api\ProjectController@show");
 
-Route::get("/", function () {
-    return Post::all();
-});
-
-Route::get("/{post}", function (Post $post) {
-    return $post;
-});
-
-
-Route::get("/projects", function () {
-    return Project::all();
-});
+// Resources
+// GET /projects - index
+// GET /projects/create - index
+// POST /projects - store
+// GET /projects/{project} - show
+// PUT /projects/{project} - update
+// DELETE /projects/{project} - destroy

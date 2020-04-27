@@ -18,8 +18,8 @@ class CreateTasksTable extends Migration
             $table->integer('project_id');
             $table->string('title');
             $table->boolean('completed')->default(false);
-            $table->integer('index');
-            $table->timestamp('completed_at');
+            $table->integer('index')->default(1);
+            $table->datetime('completed_at')->nullable();
             $table->timestamps();
         });
     }
