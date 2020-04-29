@@ -10,4 +10,9 @@ class Task extends Model
     {
         return $this->belongsTo(Project::class);
     }
+
+    public function lables()
+    {
+        return $this->hasMany(Lable::class);
+    }
 }
