@@ -9,6 +9,7 @@ use App\Project;
 Route::get("/", "Api\HomeController@index");
 Route::resource("projects", "Api\ProjectController");
 Route::resource("projects.tasks", "Api\TaskController");
+Route::resource("projects.tasks.labels", "Api\LabelController");
 // Route::get("/projects", "Api\ProjectController@index");
 // Route::post("/projects", "Api\ProjectController@store");
 // Route::get("/projects/{project}", "Api\ProjectController@show");

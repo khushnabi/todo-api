@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Task;
+
 class LabelController extends Controller
 {
     /**
@@ -33,9 +35,9 @@ class LabelController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $project, Task $task)
     {
-        //
+        return $task->labels()->create($request->all());
     }
 
     /**

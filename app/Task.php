@@ -16,6 +16,6 @@ class Task extends Model
 
     public function labels()
     {
-        return $this->hasMany(Lable::class);
+        return $this->hasMany(Label::class);
     }
 }
