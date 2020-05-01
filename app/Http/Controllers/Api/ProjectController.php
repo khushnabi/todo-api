@@ -48,8 +48,12 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Project $project)
+    public function show($project)
     {
+        $project = Project::where("slug", $project)->first();
+        if (!$project) {
+            return abort(404);
+        }
         return $project->load("tasks.labels");
     }
 
