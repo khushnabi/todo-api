@@ -16,7 +16,7 @@ class TaskController extends Controller
      */
     public function index($project)
     {
-        $project = Project::where('slug', $project)->first();
+        $project = Project::findBySlug($project);
         if (!$project) {
             return abort(404);
         }
@@ -41,8 +41,6 @@ class TaskController extends Controller
      */
     public function store(Request $request, Project $project)
     {
-
-
         return $project->tasks()->create($request->all());
     }
 
@@ -52,11 +50,9 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Project $project)
+    public function show($project, Task $task)
     {
-
-
-        return $project->tasks;
+        return $task;
     }
 
     /**
@@ -88,8 +84,9 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Project $project)
+    public function destroy($project, Task $task)
     {
-        $project->tasks()->delete();
+        $task->delete();
+        return $task;
     }
 }
