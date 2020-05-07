@@ -8,6 +8,11 @@ class Task extends Model
 {
     protected $guarded = ['id'];
 
+    protected $casts = [
+        'completed' => 'boolean',
+        'completed_at' => 'date'
+    ];
+
     public function projects()
     {
         return $this->belongsTo(Project::class);

@@ -52,7 +52,7 @@ class TaskController extends Controller
      */
     public function show($project, Task $task)
     {
-        return $task;
+        return $task->load("labels");
     }
 
     /**
@@ -73,9 +73,9 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($project, Request $request, Task $task)
+    public function update( Request $request, $project, Task $task)
     {
-        $task->update($request->only(['title', 'updated_at', 'completed']));
+        $task->update($request->only(['title', 'updated_at', 'completed_at', "completed"]));
         return $task;
     }
 

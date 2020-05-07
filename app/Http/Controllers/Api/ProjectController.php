@@ -50,15 +50,14 @@ class ProjectController extends Controller
      */
     public function show($project)
     {
-        $slugProject = Project::where("slug", $project)->first();
-        if (!$slugProject) {
-            $project = Project::find($project);
-            return $project->load("tasks.labels");
-            if (!$project) {
-                return abort(404);
-            }
+        $project = Project::find($project);
+        if (!$project) {
+            $project = Project::where('slug', $project)->first();
         }
-        return $slugProject->load("tasks.labels");
+        if (!$project) {
+            abort(404);
+        }
+        return $project->load("tasks.labels");
     }
 
     /**
