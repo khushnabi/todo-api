@@ -9,7 +9,8 @@ class Project extends Model
 {
     protected $guarded = ['id'];
 
-    public static function findBySlug($slug) {
+    public static function findBySlug($slug)
+    {
         return Project::where('slug', $slug)->first();
     }
 

@@ -14,9 +14,9 @@ class LabelController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($project, Task $task)
     {
-        //
+        return $task->labels;
     }
 
     /**

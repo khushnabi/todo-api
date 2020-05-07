@@ -73,9 +73,10 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($project, Request $request, Task $task)
     {
-        //
+        $task->update($request->only(['title', 'updated_at', 'completed']));
+        return $task;
     }
 
     /**

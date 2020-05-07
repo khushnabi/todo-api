@@ -50,11 +50,15 @@ class ProjectController extends Controller
      */
     public function show($project)
     {
-        $project = Project::where("slug", $project)->first();
-        if (!$project) {
-            return abort(404);
+        $slugProject = Project::where("slug", $project)->first();
+        if (!$slugProject) {
+            $project = Project::find($project);
+            return $project->load("tasks.labels");
+            if (!$project) {
+                return abort(404);
+            }
         }
-        return $project->load("tasks.labels");
+        return $slugProject->load("tasks.labels");
     }
 
     /**
@@ -75,11 +79,10 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Project $project)
     {
-        $data = $request->all();
-        $data['slug'] = Str::slug($request->name);
-        return Project::update($data,);
+        $project->update($request->only(['name', 'slug']));
+        return $project;
     }
 
     /**
